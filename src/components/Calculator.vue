@@ -34,6 +34,8 @@ export default {
 
 <style scoped>
 .calculator {
+  width: 400px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: minmax(50px, auto);
@@ -53,6 +55,7 @@ export default {
 .btn {
   background-color: #F2F2F2;
   border: 1px solid #999;
+  cursor: pointer;
 }
 
 .operator {
