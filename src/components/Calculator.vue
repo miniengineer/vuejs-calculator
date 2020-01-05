@@ -18,8 +18,8 @@
     <div class="btn">3</div>
     <div class="btn">+</div>
     <div class="btn zero">0</div>
-    <div>.</div>
-    <div>=</div>
+    <div class="btn">.</div>
+    <div class="btn">=</div>
   </div>
 </template>
 
@@ -47,5 +47,10 @@ export default {
 
 .zero {
   grid-column: 1 / 3;
+}
+
+.btn {
+  background-color: #eee;
+  border: 1px solid #333;
 }
 </style>
