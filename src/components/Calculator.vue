@@ -19,7 +19,7 @@
     <div @click="add" class="btn operator">+</div>
     <div @click="append('0')" class="btn zero">0</div>
     <div @click="dot" class="btn">.</div>
-    <div class="btn operator">=</div>
+    <div @click="equal" class="btn operator">=</div>
   </div>
 </template>
 
@@ -28,8 +28,10 @@ export default {
   name: "Calculator",
   data() {
     return {
+      previous: null,
       current: "",
       operator: null,
+      operatorClicked: false
     };
   },
   methods: {
@@ -49,6 +51,14 @@ export default {
       this.current = `${parseFloat(this.current) / 100}`;
     },
     append(number) {
+      if (this.operatorClicked) {
+        this.previous = this.current;
+        this.clear();
+        // eslint-disable-next-line no-console
+        console.log(this.current, number);
+        this.current += number;
+        return;
+      }
       this.current += number;
     },
     dot() {
@@ -56,15 +66,22 @@ export default {
     },
     divide() {
       this.operator = (a, b) => a / b;
+      this.operatorClicked = true;
     },
     times() {
       this.operator = (a, b) => a * b;
+      this.operatorClicked = true;
     },
     minus() {
       this.operator = (a, b) => a - b;
+      this.operatorClicked = true;
     },
     add() {
       this.operator = (a, b) => a + b;
+      this.operatorClicked = true;
+    },
+    equal() {
+      this.current = this.operator(this.previous, this.current);
     }
   }
 };
