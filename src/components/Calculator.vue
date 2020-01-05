@@ -54,8 +54,6 @@ export default {
       if (this.operatorClicked) {
         this.previous = this.current;
         this.clear();
-        // eslint-disable-next-line no-console
-        console.log(this.current, number);
         this.current += number;
         return;
       }
