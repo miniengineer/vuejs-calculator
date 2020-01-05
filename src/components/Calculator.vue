@@ -51,7 +51,7 @@ export default {
       this.current += number;
     },
     dot() {
-      !this.current.includes(".") ? this.current += "." : null
+      !this.current.includes(".") ? this.append(".") : null
     }
   }
 };
