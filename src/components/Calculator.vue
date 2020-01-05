@@ -2,7 +2,7 @@
   <div class="calculator">
     <div class="display">{{ current || 0 }}</div>
     <div @click="clear" class="btn">C</div>
-    <div class="btn">+/-</div>
+    <div @click="sign" class="btn">+/-</div>
     <div class="btn">%</div>
     <div class="btn operator">÷</div>
     <div class="btn">7</div>
@@ -28,12 +28,21 @@ export default {
   name: "Calculator",
   data() {
     return {
-      current: ''
+      current: '12'
     }
   },
   methods: {
     clear() {
-      this.current = '';
+      this.current = '0';
+    },
+    sign() {
+      if (this.current === "0") {
+        return;
+      } else if (!this.current.includes("-")) {
+        this.current = "-" + this.current;
+      } else {
+        this.current = this.current.substr(1);
+      }
     }
   }
 };
