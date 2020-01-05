@@ -4,19 +4,19 @@
     <div @click="clear" class="btn">C</div>
     <div @click="sign" class="btn">+/-</div>
     <div @click="percent" class="btn">%</div>
-    <div class="btn operator">÷</div>
+    <div @click="divide" class="btn operator">÷</div>
     <div @click="append('7')" class="btn">7</div>
     <div @click="append('8')" class="btn">8</div>
     <div @click="append('9')" class="btn">9</div>
-    <div class="btn operator">x</div>
+    <div @click="times" class="btn operator">x</div>
     <div @click="append('4')" class="btn">4</div>
     <div @click="append('5')" class="btn">5</div>
     <div @click="append('6')" class="btn">6</div>
-    <div class="btn operator">-</div>
+    <div @click="minus" class="btn operator">-</div>
     <div @click="append('1')" class="btn">1</div>
     <div @click="append('2')" class="btn">2</div>
     <div @click="append('3')" class="btn">3</div>
-    <div class="btn operator">+</div>
+    <div @click="add" class="btn operator">+</div>
     <div @click="append('0')" class="btn zero">0</div>
     <div @click="dot" class="btn">.</div>
     <div class="btn operator">=</div>
@@ -28,8 +28,9 @@ export default {
   name: "Calculator",
   data() {
     return {
-      current: ""
-    }
+      current: "",
+      operator: null,
+    };
   },
   methods: {
     clear() {
@@ -45,13 +46,25 @@ export default {
       }
     },
     percent() {
-      this.current = `${parseFloat(this.current) / 100}`
+      this.current = `${parseFloat(this.current) / 100}`;
     },
     append(number) {
       this.current += number;
     },
     dot() {
-      !this.current.includes(".") ? this.append(".") : null
+      !this.current.includes(".") ? this.append(".") : null;
+    },
+    divide() {
+      this.operator = (a, b) => a / b;
+    },
+    times() {
+      this.operator = (a, b) => a * b;
+    },
+    minus() {
+      this.operator = (a, b) => a - b;
+    },
+    add() {
+      this.operator = (a, b) => a + b;
     }
   }
 };
@@ -78,7 +91,7 @@ export default {
 }
 
 .btn {
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   border: 1px solid #999;
   cursor: pointer;
 }
