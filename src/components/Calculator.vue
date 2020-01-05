@@ -1,7 +1,7 @@
 <template>
   <div class="calculator">
-    <div class="display">59937987</div>
-    <div class="btn">C</div>
+    <div class="display">{{ current || 0 }}</div>
+    <div @click="clear" class="btn">C</div>
     <div class="btn">+/-</div>
     <div class="btn">%</div>
     <div class="btn operator">÷</div>
@@ -26,8 +26,15 @@
 <script>
 export default {
   name: "Calculator",
-  props: {
-    msg: String
+  data() {
+    return {
+      current: ''
+    }
+  },
+  methods: {
+    clear() {
+      this.current = '';
+    }
   }
 };
 </script>
